@@ -7,8 +7,8 @@ export default {
   name: 'ember-cli-bugsnag',
 
   initialize: function() {
-    let configVariables = config.bugsnag;
-    let environment = config.environment;
+    let configVariables = config.bugsnag || {};
+    let environment = configVariables.environment || config.environment;
     new BugsnagConfiguration(configVariables, environment).apply(Bugsnag);
   }
 };

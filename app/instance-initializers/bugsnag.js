@@ -4,12 +4,13 @@ import { getContext } from 'ember-cli-bugsnag/utils/errors';
 import { getMetaData } from '../utils/bugsnag';
 import Bugsnag from 'bugsnag';
 
-var currentEnv = config.environment;
-
 export default {
   name: 'bugsnag-error-service',
 
   initialize: function(instance) {
+
+    var bugsnagConfig = config.bugsnag || {}
+    var currentEnv = bugsnagConfig.environment || config.environment;
 
     if (Bugsnag.apiKey === undefined) {
       return;
